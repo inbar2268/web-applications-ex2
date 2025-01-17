@@ -1,5 +1,5 @@
 import PostModel from "../models/posts_model";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
 
 const addNewPost = async (req: Request, res: Response) => {
@@ -66,33 +66,6 @@ const getPostsByOwner = async (req: Request, res: Response) => {
     }
   }
 };
-
-
-// const updatePost = async (req: Request, res: Response) => {
-
-//   const postId = req.params.id;
-//   const { title, content, owner} = req.body;
-
-//   const updatedPost = await PostModel.findById(postId.trim());
-
-//   if (updatedPost !== null) {
-//     updatedPost.title = title;
-//     updatedPost.content = content;
-//     updatedPost.owner = owner;
-//     try{
-//       await updatedPost.save();
-//       res.status(201).send(updatedPost);
-//       }  catch (error: unknown) {
-//         if (error && typeof error === 'object' && 'message' in error) {
-//           res.status(400).send((error as { message: string }).message);
-//         } else {
-//           res.status(400).send('An unknown error occurred');
-//         }
-//       }
-//     } else{
-//       return res.status(404).json({ message: 'Post not found' });
-//     }
-// };
 
 const updatePost = async (req: Request, res: Response)=> {
   const postId = req.params.id;
