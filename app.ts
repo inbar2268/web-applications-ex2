@@ -4,7 +4,8 @@ import dotenv from "dotenv"
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import postsRoute from "./routes/posts_route";
-import commentsRouter from "./routes/comments_route";
+import commentsRoute from "./routes/comments_route";
+import usersRoute from "./routes/users_route";
 
 const app = express();
 dotenv.config();
@@ -27,7 +28,8 @@ const initApp = () => {
           app.use(bodyParser.json());
           app.use(bodyParser.urlencoded({extended: true}));
           app.use("/posts", postsRoute);
-          app.use("/comments", commentsRouter);
+          app.use("/comments", commentsRoute);
+          app.use("/users", usersRoute);
           resolve(app);
         })
         .catch((error) => {

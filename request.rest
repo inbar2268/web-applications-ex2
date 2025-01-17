@@ -57,4 +57,28 @@ DELETE  http://localhost:3000/comments/677ca96014a2c4023efee164
 ### get comments by post id
 GET http://localhost:3000/comments/byPost/673ed35a771174faa11b8a96
 
+### create user
+POST  http://localhost:3000/users
+Content-Type: application/json
 
+{
+    "username": "hadar21",
+    "email": "hadar@gmail.com",
+    "posts": ["333","rthrher"]
+}
+
+### update user
+PUT  http://localhost:3000/users/678a6615127380384dce3be7
+Content-Type: application/json
+
+{
+    "username": "inbar",
+    "email": "hadar@gmail.com",
+    "posts": ["tgeheth","rthrher"]
+}
+
+### get user by id
+GET http://localhost:3000/users/678a64e1fb5fd738f55eee8a
+
+### delete user
+DELETE  http://localhost:3000/users/678a64e1fb5fd738f55eee8a

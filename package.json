@@ -1,7 +1,7 @@
 {
   "name": "ex1",
   "scripts": {
-    "dev": "nodemon ./src/app.ts",
+    "dev": "nodemon app.ts",
     "start": "tsc && node ./dist/app.js",
     "test": "jest --detectOpenHandles --forceExit --coverage",
     "lint": "eslint . --ext .ts"
