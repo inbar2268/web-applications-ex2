@@ -81,4 +81,4 @@ Content-Type: application/json
 GET http://localhost:3000/users/678a64e1fb5fd738f55eee8a
 
 ### delete user
-DELETE  http://localhost:3000/users/678a64e1fb5fd738f55eee8a
+DELETE  http://localhost:3000/users/678a6674815cc2fb3b9b9a6f

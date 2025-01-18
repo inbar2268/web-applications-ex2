@@ -10,7 +10,7 @@ const addNewUser = async (req: Request, res: Response) => {
     if (error && typeof error === 'object' && 'message' in error) {
       res.status(400).send((error as { message: string }).message);
     } else {
-      res.status(400).send('An unknown error occurred');
+      res.status(500).send('An unknown error occurred');
     }
   }
 };
