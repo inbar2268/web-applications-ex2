@@ -6,12 +6,28 @@ import bodyParser from "body-parser";
 import postsRoute from "./routes/posts_route";
 import commentsRoute from "./routes/comments_route";
 import usersRoute from "./routes/users_route";
+import swaggerJsDoc from "swagger-jsdoc";
+import swaggerUI from "swagger-ui-express";
+
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Web Application - ex2",
+      version: "1.0.0",
+      description: "REST server including authentication using JWT",
+    },
+    servers: [{ url: "http://localhost:3000", },],
+  },
+  apis: ["./routes/*.ts"],
+};
 
 const app = express();
 dotenv.config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/posts", postsRoute);
+const specs = swaggerJsDoc(options);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
