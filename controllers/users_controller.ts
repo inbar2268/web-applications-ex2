@@ -1,10 +1,17 @@
 import UserModel from "../models/users_model";
 import { Request, Response } from "express";
+import bcrypt from 'bcrypt';
 
 const addNewUser = async (req: Request, res: Response) => {
-  const userBody = req.body;
+  const password = req.body.password;
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
   try {
-    const user = await UserModel.create(userBody);
+    const user = await UserModel.create({
+      email: req.body.email,
+      username: req.body.username,
+      password: hashedPassword,
+  });
     res.status(201).send(user);
   }  catch (error: unknown) {
     if (error && typeof error === 'object' && 'message' in error) {
@@ -18,13 +25,14 @@ const addNewUser = async (req: Request, res: Response) => {
 const updateUser = async (req: Request, res: Response) => {
 
     const userId = req.params.id;
-    const { username, email, posts} = req.body;
+    const { username, email, password ,posts} = req.body;
   
     const updatedUser = await UserModel.findById(userId.trim());
   
     if (updatedUser !== null) {
       updatedUser.username = username;
       updatedUser.email = email;
+      updatedUser.password = password;
       updatedUser.posts = posts;
 
       try{

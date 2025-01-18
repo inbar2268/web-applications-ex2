@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import userModel, { IUser } from '../models/users_model';
+import UserModel, { IUser } from '../models/users_model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Document } from 'mongoose';
@@ -14,7 +14,7 @@ const register = async (req: Request, res: Response) => {
         const password = req.body.password;
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        const user = await userModel.create({
+        const user = await UserModel.create({
             // move this to users contollers
             email: req.body.email,
             username: req.body.username,
@@ -59,7 +59,7 @@ const generateToken = (userId: string): tTokens | null => {
 
 const login = async (req: Request, res: Response) => {
     try {
-        const user = await userModel.findOne({ username: req.body.username });
+        const user = await UserModel.findOne({ username: req.body.username });
         if (!user) {
             res.status(400).send('wrong username or password');
             return;
@@ -123,7 +123,7 @@ const verifyRefreshToken = (refreshToken: string | undefined) => {
             const userId = payload._id;
             try {
                 //get the user form the db
-                const user = await userModel.findById(userId);
+                const user = await UserModel.findById(userId);
                 if (!user) {
                     reject("fail");
                     return;

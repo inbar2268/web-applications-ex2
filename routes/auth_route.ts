@@ -20,31 +20,6 @@ import authController from "../controllers/auth_controller";
 */
 
 
-/**
-* @swagger
-* components:
-*   schemas:
-*     User:
-*       type: object
-*       required:
-*         - email
-*         - password
-*         - username
-*       properties:
-*         email:
-*           type: string
-*           description: The user email
-*         username:
-*           type: string
-*           description: The user username
-*         password:
-*           type: string
-*           description: The user password
-*       example:
-*         username: inbar123
-*         email: 'inbar@gmail.com'
-*         password: '12345678'
-*/
 
 /**
 * @swagger
@@ -57,7 +32,21 @@ import authController from "../controllers/auth_controller";
 *       content:
 *         application/json:
 *           schema:
-*             $ref: '#/components/schemas/User'
+*             type: object
+*             properties:
+*               username:
+*                 type: string
+*                 description: The username of the user
+*               email:
+*                 type: string
+*                 description: The email of the user
+*               password:
+*                 type: string
+*                 description: The password of the user
+*             required:
+*               - username
+*               - email
+*               - password
 *     responses:
 *       200:
 *         description: The new user
@@ -81,7 +70,17 @@ router.post("/register", authController.register);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: The username of the user
+ *               password:
+ *                 type: string
+ *                 description: The password of the user
+ *             required:
+ *               - username
+ *               - password
  *     responses:
  *       200:
  *         description: Successful login

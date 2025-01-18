@@ -64,6 +64,7 @@ Content-Type: application/json
 {
     "username": "hadar21",
     "email": "hadar@gmail.com",
+    "password": "fwewef",
     "posts": ["333","rthrher"]
 }
 
@@ -74,6 +75,7 @@ Content-Type: application/json
 {
     "username": "inbar",
     "email": "hadar@gmail.com",
+    "password": "fwewef",
     "posts": ["tgeheth","rthrher"]
 }
 
