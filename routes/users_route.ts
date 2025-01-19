@@ -1,3 +1,4 @@
+
 import express from "express";
 const router = express.Router();
 import usersController from "../controllers/users_controller";
@@ -17,6 +18,7 @@ import usersController from "../controllers/users_controller";
  *       type: object
  *       required:
  *         - username
+ *         - password
  *         - email
  *       properties:
  *         _id:
@@ -28,13 +30,17 @@ import usersController from "../controllers/users_controller";
  *         email:
  *           type: string
  *           description: The email of the user
+ *         password: 
+ *           type: string
+ *           description: The password of the user
  *         posts:
  *           type: [string]
  *           description: List of posts`s ids
  *       example:
  *         _id: 245234t234234r234r23f4
- *         username: user123
- *         email: user234@gmail.com
+ *         username: inbar123
+ *         email: hadarrr@gmail.com
+ *         password: 12345678
  *         posts: ["4134134mkdfn332","djwne834bj4f43v368","7d8s8dg8bc3uib382b8"]
  */
 
@@ -59,12 +65,16 @@ import usersController from "../controllers/users_controller";
  *               username:
  *                 type: string
  *                 description: The username of the user
+ *               password:
+ *                 type: string
+ *                 description: The password of the user
  *               email:
  *                 type: string
  *                 description: The email of the user
  *             required:
  *               - username
  *               - email
+ *               - password
  *     responses:
  *       201:
  *         description: User created successfully
@@ -132,17 +142,7 @@ router.get("/:id", usersController.getUserByID);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *                 description: The username of the user
- *               email:
- *                 type: string
- *                 description: The email of the user
- *             required:
- *               - username
- *               - email
+ *             $ref: '#/components/schemas/User'
  *     responses:
  *       201:
  *         description: User updated successfully

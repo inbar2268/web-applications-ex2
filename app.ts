@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import postsRoute from "./routes/posts_route";
 import commentsRoute from "./routes/comments_route";
 import usersRoute from "./routes/users_route";
+import authRoute from "./routes/auth_route";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";
 
@@ -46,6 +47,7 @@ const initApp = () => {
           app.use("/posts", postsRoute);
           app.use("/comments", commentsRoute);
           app.use("/users", usersRoute);
+          app.use("/auth", authRoute);
           resolve(app);
         })
         .catch((error) => {
